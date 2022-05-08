@@ -11,6 +11,7 @@
 		"copy:assets": "copyfiles -u 1 ./src/assets/**/* assets/dist",
 		"copy": "npm-run-all --parallel copy:*",
 		"watch:html": "onchange \"src/*.html\" -- npm run copy:html",
+		"watch:js": "onchange \"src/js/*.js\" -- npm run copy:js",
 		"watch:assets": "onchange \"assets/**/*\" -- npm run copy:assets",
 		"watch:sass": "sass  --no-source-map --watch src/styles:dist/styles",
 		"watch": "npm-run-all --parallel watch:*",
