@@ -6,7 +6,6 @@ let hour = new Date().getHours();
 
 const checklistElement = document.querySelector('.checklist');
 const checkboxElements = document.querySelectorAll('.checklist li > input');
-const btn = document.querySelector('.js-btn');
 
 /**
  * Initialize app
@@ -21,18 +20,14 @@ function init() {
 
 	populateBoxes(initialList);
 
-	let result = (now - lastRefresh) / 1000;
+	// let result = (now - lastRefresh) / 1000;
 
-	if (result > 5) {
-		uncheckBoxes();
-		checklist.resetList();
-	}
+	// if (result > 5) {
+	// 	uncheckBoxes();
+	// 	checklist.resetList();
+	// }
 
 	checklistElement.addEventListener('change', changeTaskState);
-
-	btn.addEventListener('click', () => {
-		let retrieved = checklist.retrieveList();
-	});
 }
 
 /**
@@ -67,7 +62,9 @@ function changeTaskState(e) {
 	const selectedBox = e.target;
 	let i = selectedBox.id.split('task-').pop();
 
-	selectedBox.checked ? checklist.addTask(i) : checklist.removeTask(i);
+	selectedBox.checked 
+		? checklist.addTask(i) 
+		: checklist.removeTask(i);
 
 	checklist.storeList();
 }

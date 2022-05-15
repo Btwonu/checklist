@@ -30,8 +30,6 @@ class Checklist {
 		};
 
 		localStorage.setItem('checklist', JSON.stringify(listData));
-
-		let stored = JSON.parse(localStorage.getItem('checklist'));
 	}
 
 	resetList() {
@@ -39,7 +37,12 @@ class Checklist {
 	}
 
 	retrieveList() {
-		return JSON.parse(localStorage.getItem('checklist'));
+		const retreivedList = JSON.parse(localStorage.getItem('checklist'));
+		const { tasks } = retreivedList;
+
+		this.tasks = Object.assign({}, tasks);
+
+		return retreivedList;
 	}
 }
 
