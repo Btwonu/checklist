@@ -1,8 +1,7 @@
 import checklist from './checklist-instance.js';
 
-let now = Date.now();
-let date = new Date().getDate();
-let hour = new Date().getHours();
+const now = Date.now();
+const currentDate = new Date(now);
 
 const checklistElement = document.querySelector('.checklist');
 const checkboxElements = document.querySelectorAll('.checklist li > input');
@@ -17,15 +16,15 @@ function init() {
 
 	const initialList = checklist.retrieveList();
 	const { lastRefresh } = initialList;
+	const lastRefreshDate = new Date(lastRefresh);
+
+	if (!sameDay(currentDate, lastRefreshDate) && currentDate.getHours() < 4) {
+		// reset list every day after 4 o'clock
+		uncheckBoxes();
+		checklist.resetList();
+	}
 
 	populateBoxes(initialList);
-
-	// let result = (now - lastRefresh) / 1000;
-
-	// if (result > 5) {
-	// 	uncheckBoxes();
-	// 	checklist.resetList();
-	// }
 
 	checklistElement.addEventListener('change', changeTaskState);
 }
@@ -67,6 +66,18 @@ function changeTaskState(e) {
 		: checklist.removeTask(i);
 
 	checklist.storeList();
+}
+
+/**
+ * Return boolean representing whether 2 dates are in the same day
+ * @param  {Date} d1 Date of day 1
+ * @param  {Date} d2 Date of day 2
+ * @return {Boolean}
+ */
+function sameDay(d1, d2) {
+	return d1.getFullYear() === d2.getFullYear() &&
+	d1.getMonth() === d2.getMonth() &&
+	d1.getDate() === d2.getDate();
 }
 
 init();
