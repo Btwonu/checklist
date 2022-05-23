@@ -18,7 +18,7 @@ function init() {
 	const { lastRefresh } = initialList;
 	const lastRefreshDate = new Date(lastRefresh);
 
-	if (!sameDay(currentDate, lastRefreshDate) && currentDate.getHours() < 4) {
+	if (!sameDay(currentDate, lastRefreshDate) && currentDate.getHours() > 4) {
 		// reset list every day after 4 o'clock
 		uncheckBoxes();
 		checklist.resetList();
@@ -61,11 +61,10 @@ function changeTaskState(e) {
 	const selectedBox = e.target;
 	let i = selectedBox.id.split('task-').pop();
 
-	selectedBox.checked 
-		? checklist.addTask(i) 
-		: checklist.removeTask(i);
+	selectedBox.checked ? checklist.addTask(i) : checklist.removeTask(i);
 
 	checklist.storeList();
+	checklist.updateProgress();
 }
 
 /**
@@ -75,9 +74,11 @@ function changeTaskState(e) {
  * @return {Boolean}
  */
 function sameDay(d1, d2) {
-	return d1.getFullYear() === d2.getFullYear() &&
-	d1.getMonth() === d2.getMonth() &&
-	d1.getDate() === d2.getDate();
+	return (
+		d1.getFullYear() === d2.getFullYear() &&
+		d1.getMonth() === d2.getMonth() &&
+		d1.getDate() === d2.getDate()
+	);
 }
 
 init();

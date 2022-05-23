@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital@1&display=swap');
+@import './fonts.scss';
 
 *,
 *:before,
@@ -11,6 +11,7 @@ body {
 	margin: 0;
 	background: #fffefc;
 	color: #313131;
+	font-family: 'Plus Jakarta Sans';
 }
 
 h1,
@@ -19,7 +20,6 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: 'Source Serif Pro', serif;
 }
 
 h1 {
@@ -35,9 +35,11 @@ h1 {
 }
 
 .checklist {
-	background: #adc74b;
-	padding: 20px 40px;
-	min-width: 300px;
+	background: #fdfdfd;
+	padding: 40px 40px;
+	min-width: 400px;
+	box-shadow: 2px 2px 10px 1px rgba(#313131, 0.2);
+	border-radius: 4px;
 }
 
 .checklist ul {
@@ -45,6 +47,41 @@ h1 {
 	list-style: none;
 }
 
+.checklist li {
+	position: relative;
+	// padding: 10px 34px;
+	// border-left: 4px solid #2373ba;
+	// border-radius: 4px;
+	// box-shadow: 2px 2px 10px 1px rgba(#313131, 0.2);
+}
+
 .checklist li + li {
-	margin-top: 6px;
+	margin-top: 14px;
+}
+
+.checklist li input {
+	display: none;
+}
+
+.checklist li input:checked ~ label {
+	background-color: #8eda8e;
+	color: #fdfdfd;
+}
+
+.checklist li label {
+	display: block;
+	padding: 14px 34px;
+	border-left: 4px solid #2373ba;
+	border-radius: 4px;
+	box-shadow: 2px 2px 10px 1px rgba(#313131, 0.2);
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+}
+
+.checklist__progress p {
+	height: 1em;
+}
+
+.checklist__progress p:not(.active) {
+	visibility: hidden;
 }

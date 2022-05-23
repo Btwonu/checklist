@@ -44,6 +44,26 @@ class Checklist {
 
 		return retreivedList;
 	}
+
+	updateProgress() {
+		const tasksArray = Object.values(this.tasks);
+		const tasksTotal = tasksArray.length;
+		const tasksDone = tasksArray.filter((val) => val).length;
+
+		let renderMessage = `You have completed ${tasksDone} out of your ${tasksTotal} tasks!`;
+
+		const progressElement = document.querySelector(
+			'.js-checklist-progress p'
+		);
+
+		if (tasksDone) {
+			progressElement.innerText = renderMessage;
+			progressElement.classList.add('active');
+		} else {
+			progressElement.innerText = '';
+			progressElement.classList.remove('active');
+		}
+	}
 }
 
 export default new Checklist();
