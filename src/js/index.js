@@ -22,9 +22,11 @@ function init() {
 		// reset list every day after 4 o'clock
 		uncheckBoxes();
 		checklist.resetList();
+		checklist.updateProgress();
 	}
 
 	populateBoxes(initialList);
+	checklist.updateProgress();
 
 	checklistElement.addEventListener('change', changeTaskState);
 }
@@ -43,7 +45,9 @@ function uncheckBoxes() {
  * @param {Object} list - Checklist
  **/
 function populateBoxes(list) {
-	let tasksDoneKeys = Object.keys(list.tasks).filter((key) => list.tasks[key]);
+	let tasksDoneKeys = Object.keys(list.tasks).filter(
+		(key) => list.tasks[key]
+	);
 
 	checkboxElements.forEach((checkbox, i) => {
 		let currentBoxId = checkbox.id.split('task-').pop();
