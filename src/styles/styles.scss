@@ -34,12 +34,34 @@ h1 {
 	}
 }
 
+.shell {
+	max-width: 1600px;
+	padding: 0 20px;
+	margin: 0 auto;
+	width: 100%;
+
+	@media (min-width: 768px) {
+		padding: 0 30px;
+	}
+
+	@media (min-width: 1024px) {
+		padding: 0 60px;
+	}
+}
+
 .checklist {
 	background: #fdfdfd;
 	padding: 40px 40px;
-	min-width: 400px;
+	max-width: 400px;
+	margin: 0 auto;
 	box-shadow: 2px 2px 10px 1px rgba(#313131, 0.2);
 	border-radius: 4px;
+
+	@media (max-width: 768px) {
+		min-width: auto;
+		width: 100%;
+		padding: 20px;
+	}
 }
 
 .checklist ul {
