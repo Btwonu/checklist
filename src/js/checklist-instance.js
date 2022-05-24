@@ -16,11 +16,16 @@ class Checklist {
 	}
 
 	initList() {
-		const listData = {
+		const taskData = {
 			tasks: {},
 		};
+		const taskList = document.querySelectorAll('.checklist ul > li');
 
-		localStorage.setItem('checklist', JSON.stringify(listData));
+		taskList.forEach((taskItem, i) => {
+			taskData.tasks[i] = false;
+		});
+
+		localStorage.setItem('checklist', JSON.stringify(taskData));
 	}
 
 	storeList() {
